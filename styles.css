@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header, footer{
+    background-color: rgba(93, 165, 190, 1);
+    color: black;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 20px;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    color: #11111f;
+    font-size: 1rem;
+}
+
+main {
+    background-color: rgba(210, 235, 240, 1);
+    padding: 20px;
+}
+
+.controles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: end;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+select {
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button {
+    padding: 15px 20px;
+    border-radius: 10px;
+    background-color: #50C6CC;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #349EBA;
+}
+
+.contenedor-paleta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 22px;
+}
