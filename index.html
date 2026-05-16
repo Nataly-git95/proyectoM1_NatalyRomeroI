@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>PaletaDeColores</title>
+    </head>
+
+    <body>
+
+        <header>
+            <h1>Generador paletas de colores</h1>
+            <p>creador de combinaciones de colores aleatorias en diferentes formatos</p>
+        </header>
+
+        <main>
+            <section class="controles">
+                <article class="grupo-control">
+                    <label for="tamañopaleta">cantidad de colores</label>
+                    <select id="tamañopaleta">
+                        <option value="6">6 colores</option>
+                        <option value="8">8 colores</option>
+                        <option value="9">9 colores</option>
+                    </select>
+                </article>
+
+                <article class="grupo-control">
+                    <label for="formatocolor">formato del color</label>
+                    <select id="formatocolor">
+                        <option value="hsl">HSL</option>
+                        <option value="hsl">HEX</option>
+                        <option value="hsl">RGBA</option>
+                    </select>
+                </article>
+
+                <button id="crearboton">crear paleta</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>Proyecto Frontend Junior - Generador de Paletas de Colores</p>
+        </footer>
+
+    </body>
+</html>
