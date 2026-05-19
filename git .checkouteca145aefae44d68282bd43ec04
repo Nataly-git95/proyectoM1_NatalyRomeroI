@@ -1,0 +1,59 @@
+[33mcommit b7d131bc7011873d2ee3dc77ee93a5db80520bdf[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: nataly romero i <anaroi030995@gmail.com>
+Date:   Mon May 18 21:20:39 2026 -0500
+
+    feat:se agregaron estilos para el toast
+
+[33mcommit c902924bf268f5ebbacaaed28572c19633ddcd32[m
+Author: nataly romero i <anaroi030995@gmail.com>
+Date:   Mon May 18 21:15:47 2026 -0500
+
+    feat:se agrego la etiqueta div para el valor del toast
+
+[33mcommit 069858273fa3a22ac9a410915e0d6b6e3ccdbe84[m
+Author: nataly romero i <anaroi030995@gmail.com>
+Date:   Mon May 18 19:30:04 2026 -0500
+
+    feat: se agrego los estilos para caja-color y boton bloqueo
+
+[33mcommit eca145aefae44d68282bd43ec04d607e6d97a5b4[m
+Author: nataly romero i <anaroi030995@gmail.com>
+Date:   Mon May 18 19:28:13 2026 -0500
+
+    feat: se agrego la funcion de bloquear los colores que el usuario escoja
+
+[33mcommit 868767f9c2101588f83c4327d96b56942a53f1e1[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: nataly romero i <anaroi030995@gmail.com>
+Date:   Mon May 18 12:05:32 2026 -0500
+
+    feat: se agrego los estilos para las tarjetas de colores
+
+[33mcommit 01246d962708fe3ea1c9ca2a48e1deefc2ec8eeb[m
+Author: nataly romero i <anaroi030995@gmail.com>
+Date:   Mon May 18 11:31:35 2026 -0500
+
+    feat:guardamos variables del html se activo la funcion del boton carga la cantidad de colores y formatos
+
+[33mcommit 61dec003eeef63a25e3d8ac3716ae7d3a65285f0[m
+Author: Nataly Romero I <anaroi030995@gmail.com>
+Date:   Fri May 15 22:17:40 2026 -0500
+
+    feat:creacion de js con las funciones para generar los formatos de colores
+
+[33mcommit 18aa3926f43750f166484b3ce79ee7fbfb7a7a14[m
+Author: Nataly Romero I <anaroi030995@gmail.com>
+Date:   Fri May 15 20:29:02 2026 -0500
+
+    feat: creacion del css estilos para header footer y main
+
+[33mcommit 664c97979fee4ef0915b78682d7dd460a278a2a5[m
+Author: Nataly Romero I <anaroi030995@gmail.com>
+Date:   Fri May 15 19:47:41 2026 -0500
+
+    feat: agregar etiquetas semanticas para la correcta funcionalidad del html
+
+[33mcommit a9255c8d93d56a938965bc01cebdd8ba7fa9ebf0[m
+Author: Nataly Romero I <anaroi030995@gmail.com>
+Date:   Fri May 15 19:17:43 2026 -0500
+
+    feat: creacion del html

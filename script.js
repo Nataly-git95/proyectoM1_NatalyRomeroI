@@ -57,10 +57,9 @@ function generarpaleta(){
                     !paletaactual[index].bloqueado;
                     renderizarpaleta();
                 });
-
+                caja.appendChild(codigo);
+                caja.appendChild(botonbloquear);
                 tarjeta.appendChild(caja);
-                tarjeta.appendChild(codigo);
-                tarjeta.appendChild(botonbloquear);
                 contenedorpaleta.appendChild(tarjeta)
             });
         }
