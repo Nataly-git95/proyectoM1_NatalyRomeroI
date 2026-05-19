@@ -1,29 +1,69 @@
-const cantidadcolores = document.getElementById("cantidad-colores");
-const formatocolores = document.getElementById("formatocolor");
+const cantidadcolores = document.getElementById("cantidadcolores");
+const formatocolor = document.getElementById("formatocolor");
 const crearboton = document.getElementById("crearboton");
 const contenedorpaleta = document.getElementById("contenedorpaleta");
 
 crearboton.addEventListener("click", generarpaleta);
 
+let paletaactual = [];
+
 function generarpaleta(){
 
     const cantidad = cantidadcolores.value;
-    const formato = formatocolores.value;
+    const formato = formatocolor.value;
 
-    contenedorpaleta.innerHTML = "";
+    let nuevapaleta = [];
 
     for(let i = 0; i < cantidad; i++){
-        let colorgenerado;
-        if(formato === "hex"){
-            colorgenerado = generarHex();
-            }else if(formato === "rgba"){
-                colorgenerado = generarRGBA();
+        if(paletaactual [i] && paletaactual[i].bloqueado){
+            nuevapaleta.push(paletaactual[i]);
+        }else {
+            let colorgenerado;
+            if (formato === "hex"){
+                colorgenerado = generarHex();
+            }else if (formato === "rgba") {
+            colorgenerado = generarRGBA();
             }else{
                 colorgenerado = generarHSL();
             }
-            creartarjetacolor(colorgenerado);
-    }
-    }
+            nuevapaleta.push({
+                color: colorgenerado, bloqueado: false});
+            };
+        }
+
+        paletaactual = nuevapaleta;
+        renderizarpaleta();
+        }
+
+        function renderizarpaleta(){
+
+            contenedorpaleta.innerHTML = "";
+            paletaactual.forEach((item, index) => {
+                const tarjeta = document.createElement("article");
+                tarjeta.classList.add("tarjeta-color");
+                
+                const caja = document.createElement("div");
+                caja.classList.add("caja-color");
+                caja.style.background = item.color;
+
+                const codigo = document.createElement("p");
+                codigo.textContent = item.color;
+
+                const botonbloquear = document.createElement("button");
+                botonbloquear.textContent = item.bloqueado ? "🔒" : "🔓";
+                botonbloquear.classList.add("boton-bloqueo");
+                botonbloquear.addEventListener("click", () => {
+                    paletaactual[index].bloqueado =
+                    !paletaactual[index].bloqueado;
+                    renderizarpaleta();
+                });
+
+                tarjeta.appendChild(caja);
+                tarjeta.appendChild(codigo);
+                tarjeta.appendChild(botonbloquear);
+                contenedorpaleta.appendChild(tarjeta)
+            });
+        }
 
 function generarHex() {
     const letras = "0123456789ABCDEF";
@@ -53,6 +93,7 @@ function creartarjetacolor(color) {
     tarjeta.classList.add("tarjeta-color");
 
     const caja = document.createElement("div");
+    caja.classList.add("caja-color");
     caja.style.backgroundColor = color;
     caja.textContent = color;
     tarjeta.appendChild(caja);
