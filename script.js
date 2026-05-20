@@ -99,3 +99,43 @@ function creartarjetacolor(color) {
     contenedorpaleta.appendChild(tarjeta);
 }
 generarpaleta();
+
+const botonCrear = document.getElementById("crearboton");
+
+function mostrarToast(mensaje, elemento) {
+
+    const toastExistente = document.querySelector(".toast");
+
+    if (toastExistente) {
+    toastExistente.remove();
+    }
+
+    const toast = document.createElement("div");
+
+    toast.classList.add("toast");
+    toast.textContent = mensaje;
+
+    document.body.appendChild(toast);
+
+    const rect = elemento.getBoundingClientRect();
+
+    toast.style.top = `${rect.top - 50}px`;
+    toast.style.left = `${rect.left}px`;
+
+    setTimeout(() => {
+    toast.classList.add("show");
+    }, 10);
+
+    setTimeout(() => {
+
+    toast.classList.remove("show");
+
+    setTimeout(() => {
+    toast.remove();
+    }, 200);
+    }, 1200);
+    }
+
+    botonCrear.addEventListener("click", () => {
+    mostrarToast("paleta creada correctamente", botonCrear);
+    });

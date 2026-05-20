@@ -107,3 +107,19 @@ button:hover {
 .boton-bloqueo:hover{
     transform: scale(1.2);
 }
+
+.toast {
+    position: fixed;
+    background: hsl(147, 54%, 51%);
+    color: black;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;    
+    opacity: 0;
+    transform: translateY(10px);    
+    transition: all 0.2s ease;    
+}   
+    .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
