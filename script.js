@@ -3,9 +3,9 @@ const formatocolor = document.getElementById("formatocolor");
 const crearboton = document.getElementById("crearboton");
 const contenedorpaleta = document.getElementById("contenedorpaleta");
 
-crearboton.addEventListener("click", generarpaleta);
-
 let paletaactual = [];
+
+crearboton.addEventListener("click", generarpaleta);
 
 function generarpaleta(){
 
@@ -15,12 +15,16 @@ function generarpaleta(){
     let nuevapaleta = [];
 
     for(let i = 0; i < cantidad; i++){
+
         if(paletaactual [i] && paletaactual[i].bloqueado){
             nuevapaleta.push(paletaactual[i]);
+
         }else {
             let colorgenerado;
+
             if (formato === "hex"){
                 colorgenerado = generarHex();
+
             }else if (formato === "rgba") {
             colorgenerado = generarRGBA();
             }else{
@@ -28,12 +32,16 @@ function generarpaleta(){
             }
             nuevapaleta.push({
                 color: colorgenerado, bloqueado: false});
-            };
+            }
         }
 
         paletaactual = nuevapaleta;
+
         renderizarpaleta();
+
+        mostrarToast("🎨Paleta creada correctamente",crearboton);
         }
+        
 
         function renderizarpaleta(){
 
@@ -46,23 +54,39 @@ function generarpaleta(){
                 caja.classList.add("caja-color");
                 caja.style.background = item.color;
 
-                const codigo = document.createElement("p");
+                const codigo = document.createElement("span");
+                codigo.classList.add("codigo-color");
                 codigo.textContent = item.color;
 
-                const botonbloquear = document.createElement("button");
-                botonbloquear.textContent = item.bloqueado ? "🔒" : "🔓";
-                botonbloquear.classList.add("boton-bloqueo");
-                botonbloquear.addEventListener("click", () => {
-                    paletaactual[index].bloqueado =
-                    !paletaactual[index].bloqueado;
-                    renderizarpaleta();
+                codigo.addEventListener("click", ()=>{
+                    navigator.clipboard.writeText(item.color);
+                    mostrarToast("📋Color copiado", codigo);
                 });
-                caja.appendChild(codigo);
-                caja.appendChild(botonbloquear);
-                tarjeta.appendChild(caja);
-                contenedorpaleta.appendChild(tarjeta)
+                const colorTexto = obtenerContraste(item.color);
+                codigo.style.color = colorTexto;
+                
+                const botonbloqueo = document.createElement("button");
+                botonbloqueo.classList.add("boton-bloqueo");
+                botonbloqueo.textContent = item.bloqueado ? "🔒" : "🔓";
+                botonbloqueo.addEventListener("click",()=>{
+                    paletaactual[index].bloqueado = !paletaactual[index].bloqueado;
+                    
+                    const mensaje = paletaactual[index].bloqueado
+                    ? "Color bloqueado 🔒" : "Color desbloqueado 🔓";
+                    mostrarToast(mensaje, botonbloqueo);
+                    
+                    renderizarpaleta();
+                }
+            );
+
+                    caja.appendChild(botonbloqueo);
+                    caja.appendChild(codigo);
+            
+                    tarjeta.appendChild(caja);
+            
+                    contenedorpaleta.appendChild(tarjeta);
             });
-        }
+            }
 
 function generarHex() {
     const letras = "0123456789ABCDEF";
@@ -87,32 +111,19 @@ function generarHSL() {
     return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
-function creartarjetacolor(color) {
-    const tarjeta = document.createElement("article");
-    tarjeta.classList.add("tarjeta-color");
-
-    const caja = document.createElement("div");
-    caja.classList.add("caja-color");
-    caja.style.backgroundColor = color;
-    caja.textContent = color;
-    tarjeta.appendChild(caja);
-    contenedorpaleta.appendChild(tarjeta);
-}
-generarpaleta();
-
-const botonCrear = document.getElementById("crearboton");
-
-function mostrarToast(mensaje, elemento) {
+function mostrarToast(mensaje, elemento){
 
     const toastExistente = document.querySelector(".toast");
 
-    if (toastExistente) {
-    toastExistente.remove();
+    if(toastExistente){
+
+        toastExistente.remove();
     }
 
     const toast = document.createElement("div");
 
     toast.classList.add("toast");
+
     toast.textContent = mensaje;
 
     document.body.appendChild(toast);
@@ -120,22 +131,48 @@ function mostrarToast(mensaje, elemento) {
     const rect = elemento.getBoundingClientRect();
 
     toast.style.top = `${rect.top - 50}px`;
+
     toast.style.left = `${rect.left}px`;
 
-    setTimeout(() => {
-    toast.classList.add("show");
-    }, 10);
+    setTimeout(()=>{
 
-    setTimeout(() => {
+        toast.classList.add("show");
 
-    toast.classList.remove("show");
+    },10);
 
-    setTimeout(() => {
-    toast.remove();
-    }, 200);
-    }, 1200);
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+        setTimeout(()=>{
+
+            toast.remove();
+
+        },200);
+
+    },1200);
+}
+
+function obtenerContraste(color){
+
+    if(
+        color.includes("#")
+    ){
+
+        const hex = color.replace("#","");
+
+        const r = parseInt(hex.substring(0,2),16);
+
+        const g = parseInt(hex.substring(2,4),16);
+
+        const b = parseInt(hex.substring(4,6),16);
+
+        const brillo = (r * 299 + g * 587 + b * 114) / 1000;
+
+        return brillo > 128 ? "#000" : "#fff";
     }
 
-    botonCrear.addEventListener("click", () => {
-    mostrarToast("paleta creada correctamente", botonCrear);
-    });
+    return "#000";
+}
+
+generarpaleta();
